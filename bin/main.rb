@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
-puts 'Enter username: '
+puts 'Enter  your name: '
 
-username = gets.chomp
+player_one = gets.chomp
 
-puts "Hello #{username}, its your turn play"
+puts "Hello #{player_one}, welcom and please wait for the other player"
+
+puts 'Next player, enter your name'
+
+player_two = gets.chomp
+
+puts "Perfect #{player_one} and #{player_two} you can start the game"
