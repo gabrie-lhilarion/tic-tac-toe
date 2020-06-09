@@ -1,2 +1,6 @@
 #!/usr/bin/env ruby
-print "Hello word!"
+puts 'Enter username: '
+
+username = gets.chomp
+
+puts "Hello #{username}, its your turn play"
