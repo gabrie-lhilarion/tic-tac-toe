@@ -3,6 +3,8 @@
 def is_available(number)
     # compare taken with boxes
     # true or false == boolean
+    # return if number.to_i == 0
+
     if $taken.any? { |x| x == number}
        puts "Soryy the position has been taken" 
     else
@@ -58,7 +60,12 @@ end
         end
 
         play = gets.chomp
+    
+        if play.to_i == 0
+         puts "Please choose a number from 1 to 9" 
+        else    
         is_available(play)
+        end
     end
    
 
