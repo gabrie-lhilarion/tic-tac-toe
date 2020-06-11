@@ -83,9 +83,6 @@ def win
     ]
     player1 = []
     player2 = []
-
-
-
 end
 
 
