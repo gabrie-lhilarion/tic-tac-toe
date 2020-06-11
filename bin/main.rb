@@ -5,6 +5,9 @@ $boxes = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 $taken = []
 $array_two = []
 $array_one = []
+$second_player = nil
+$first_player  = nil
+$winner = nil
 
 def is_available(number,step)
 
@@ -35,30 +38,40 @@ def win(player_1,player_2)
         [1, 5, 9],
         [3, 5, 7],
     ]
-
-    win_possibilities.each do |win|
-        if player_1 - win == []
-            puts "player1 wins"
-        elsif player_2 - win = []
-            puts "player two wins"
-        else
-            puts "draw"
-        end
-    end
    
-    
+   
+   if win_possibilities.any?(player_1)
+    $winner = $second_player 
+    return true
+   elsif win_possibilities.any?(player_2)
+    $winner = $first_player 
+    return true
+   else
+   return false 
+   end
+
 end
+
+ def declay_status
+    if $winner == nil
+        puts "This is a draw game"
+    else
+        puts "The winner is #{$winner}"        
+    end    
+ end
+
 
  def player_turns  
     puts 'Enter  your name: '
 
     player_one = gets.chomp
-
+    $first_player = player_one
     puts "Hello #{player_one}, welcom and please wait for the other player"
 
     puts 'Next player, enter your name'
 
     player_two = gets.chomp
+    $second_player = player_two
 
     puts "Perfect #{player_one} and #{player_two} you can start the game"
 
@@ -89,7 +102,7 @@ end
 
 
 player_turns
-
+declay_status
 
 
 
