@@ -7,9 +7,6 @@ $array_two = []
 $array_one = []
 
 def is_available(number,step)
-    # compare taken with boxes
-    # true or false == boolean
-    # return if number.to_i == 0
 
     if $taken.any?(number.to_i) #{ |x| x == number}
        puts "Soryy the position has been taken" 
@@ -26,22 +23,21 @@ def is_available(number,step)
 end
 
 
-    def win(player_1,player_2)
+def win(player_1,player_2)
 
-
-        win_possibilities = [
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9],
-            [1, 4, 7],
-            [2, 5, 8],
-            [3, 6, 9],
-            [1, 5, 9],
-            [3, 5, 7],
-        ]
-        player1 = []
-        player2 = []
-    end
+    win_possibilities = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9],
+        [1, 5, 9],
+        [3, 5, 7],
+    ]
+   
+    
+end
 
  def player_turns  
     puts 'Enter  your name: '
