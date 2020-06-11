@@ -35,6 +35,16 @@ def win(player_1,player_2)
         [1, 5, 9],
         [3, 5, 7],
     ]
+
+    win_possibilities.each do |win|
+        if player_1 - win == []
+            puts "player1 wins"
+        elsif player_2 - win = []
+            puts "player two wins"
+        else
+            puts "draw"
+        end
+    end
    
     
 end
@@ -69,7 +79,7 @@ end
         else  
 
         is_available(play,x)
-        #break if win(player_one,player_two)
+        break if win($array_one,$array_two)
 
 
         end
