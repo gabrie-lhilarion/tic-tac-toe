@@ -67,13 +67,12 @@ end
     while  x < $boxes.length
         x += 1
         if $taken.length % 2 == 0
-             puts "#{player_two} make your move" 
+          puts "#{player_two} make your move" 
         else
-             puts "#{player_one} make your move"
+          puts "#{player_one} make your move"
         end
 
         play = gets.chomp
-    
         if play.to_i == 0
          puts "Please choose a number from 1 to 9" 
         else  
