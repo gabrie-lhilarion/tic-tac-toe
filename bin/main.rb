@@ -5,7 +5,7 @@ def is_available(number)
     # true or false == boolean
     # return if number.to_i == 0
 
-    if $taken.any? { |x| x == number}
+    if $taken.any?(number.to_i) #{ |x| x == number}
        puts "Soryy the position has been taken" 
     else
        $taken << number.to_i
@@ -24,15 +24,21 @@ def is_available(number)
         
 end
 
- 
-
     $boxes = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     $taken = []
-    $play  = {}
+    # $play  = {}
+ 
     
 
- 
-        
+    
+    #puts "#{player_one} please take your first step"
+
+    #play = gets.chomp
+    #is_available(play)
+
+
+
+ def player_turns  
     puts 'Enter  your name: '
 
     player_one = gets.chomp
@@ -44,12 +50,7 @@ end
     player_two = gets.chomp
 
     puts "Perfect #{player_one} and #{player_two} you can start the game"
-    
-    #puts "#{player_one} please take your first step"
-
-    #play = gets.chomp
-    #is_available(play)
-    
+     
     x = 0 
     while  x < $boxes.length
         x += 1
@@ -67,12 +68,28 @@ end
         is_available(play)
         end
     end
-   
+end
+
+def win
+    win_possibilities = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9],
+        [1, 5, 9],
+        [3, 5, 7],
+    ]
+    player1 = []
+    player2 = []
 
 
-    
 
-     
+end
+
+
+player_turns
 
 
 
