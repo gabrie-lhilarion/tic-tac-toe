@@ -78,13 +78,23 @@ def player_turns # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodL
     exit
   end
 
+  board = "
+     |     |
+_____|_____|_____
+     |     |
+_____|_____|_____
+     |     |
+     |     | "
+
   x = 0
   while x < $boxes.length
     x += 1
     if $taken.length.even?
       puts "#{player_two} make your move"
+      print board # rubocop:disable Style/IdenticalConditionalBranches
     else
       puts "#{player_one} make your move"
+      print board # rubocop:disable Style/IdenticalConditionalBranches
     end
 
     play = gets.chomp
