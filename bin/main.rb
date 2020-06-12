@@ -11,7 +11,7 @@ $winner = nil
 
 def is_available(number,step)
 
-    if $taken.any?(number.to_i) #{ |x| x == number}
+    if $taken.any?(number.to_i)  
        puts "Soryy the position has been taken" 
     else
 
@@ -56,6 +56,7 @@ end
     if $winner == nil
         puts "This is a draw game"
     else
+        puts "G A M E  O V E R"
         puts "The winner is #{$winner}"        
     end    
  end
@@ -65,15 +66,27 @@ end
     puts 'Enter  your name: '
 
     player_one = gets.chomp
-    $first_player = player_one
-    puts "Hello #{player_one}, welcom and please wait for the other player"
 
-    puts 'Next player, enter your name'
+    if !player_one.empty? && player_one.length > 2
+       $first_player = player_one
+       puts "Hello #{player_one}, welcom and please wait for the other player"
+       puts 'Next player, enter your name'
+    else
+       puts "WRONG MOVE!"
+       puts "Start over and enter an name upto 3 characters"
+       exit
+    end
+
 
     player_two = gets.chomp
-    $second_player = player_two
-
-    puts "Perfect #{player_one} and #{player_two} you can start the game"
+    if !player_two.empty? && player_two.length > 2
+       $second_player = player_two
+       puts "PERFECT! #{player_one} and #{player_two} you can start the game"
+    else
+        puts "WRONG MOVE!"
+        puts "Start over and enter an name upto 3 characters"
+        exit 
+    end
 
 
     x = 0 
@@ -96,7 +109,7 @@ end
 
         end
     end
-    return
+    
 end
 
 
