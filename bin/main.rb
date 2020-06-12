@@ -65,7 +65,7 @@ end
  def player_turns  
     puts 'Enter  your name: '
 
-    player_one = gets.chomp
+    player_one = gets.chomp.sub(" ","")
 
     if !player_one.empty? && player_one.length > 2
        $first_player = player_one
@@ -78,7 +78,7 @@ end
     end
 
 
-    player_two = gets.chomp
+    player_two = gets.chomp.sub(" ","")
     if !player_two.empty? && player_two.length > 2
        $second_player = player_two
        puts "PERFECT! #{player_one} and #{player_two} you can start the game"
