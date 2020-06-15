@@ -1,121 +1,94 @@
 #!/usr/bin/env ruby
+require_relative 'players.rb'
+require_relative 'board.rb'
 
+ $a = 0; $b = 0
 
-$boxes = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-$taken = []
-$array_two = []
-$array_one = []
-$second_player = nil
-$first_player  = nil
-$winner = nil
+def display(board_view)
 
-def is_available(number,step)
-
-    if $taken.any?(number.to_i)  
-       puts "Soryy the position has been taken" 
-    else
-
-       $taken << number.to_i 
-
-       step % 2 == 0 ? $array_two << number.to_i  : $array_one << number.to_i    
-
-       puts "#{$taken} has been taken and #{$boxes - $taken == [] ? 0 : $boxes - $taken} are available.  #{$array_one} : #{$array_two}"
-
-    end       
-     return   
-end
-
-
-def win(player_1,player_2)
-
-    win_possibilities = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-        [1, 4, 7],
-        [2, 5, 8],
-        [3, 6, 9],
-        [1, 5, 9],
-        [3, 5, 7],
-    ]
-   
-   
-   if win_possibilities.any?(player_1)
-    $winner = $second_player 
-    return true
-   elsif win_possibilities.any?(player_2)
-    $winner = $first_player 
-    return true
-   else
-   return false 
-   end
-
-end
-
- def declay_status
-    if $winner == nil
-        puts "This is a draw game"
-    else
-        puts "G A M E  O V E R"
-        puts "The winner is #{$winner}"        
-    end    
- end
-
-
- def player_turns  
-    puts 'Enter  your name: '
-
-    player_one = gets.chomp.sub(" ","")
-
-    if !player_one.empty? && player_one.length > 2
-       $first_player = player_one
-       puts "Hello #{player_one}, welcom and please wait for the other player"
-       puts 'Next player, enter your name'
-    else
-       puts "WRONG MOVE!"
-       puts "Start over and enter an name upto 3 characters"
-       exit
-    end
-
-
-    player_two = gets.chomp.sub(" ","")
-    if !player_two.empty? && player_two.length > 2
-       $second_player = player_two
-       puts "PERFECT! #{player_one} and #{player_two} you can start the game"
-    else
-        puts "WRONG MOVE!"
-        puts "Start over and enter an name upto 3 characters"
-        exit 
-    end
-
-
-    x = 0 
-    while  x < $boxes.length
-        x += 1
-        if $taken.length % 2 == 0
-          puts "#{player_two} make your move" 
-        else
-          puts "#{player_one} make your move"
+    y = 0
+    while y < board_view.length
+        if y == 2  || y == 5
+            puts "  #{board_view[y]}  "
+            puts "----------------"
+        elsif y == 4 || y == 1  || y == 7
+            print " | #{board_view[y]} | "    
+        elsif y == 8
+            print "  #{board_view[y]}  \n \n"
+        else        
+            print "  #{board_view[y]}  "
         end
 
-        play = gets.chomp
-        if play.to_i == 0
-         puts "Please choose a number from 1 to 9" 
-        else  
-
-        is_available(play,x)
-        break if win($array_one,$array_two)
-
-
-        end
+    y += 1   
     end
+end 
+
+puts 'Welcome to TIC TAC TOE'
+
+puts  'Firts player please enter your name'
+pl_1 = gets.chomp
+
+puts "Okey #{pl_1} you have been assigned letter 'O'"
+puts 'Second player please enter your name'
+
+pl_2 = gets.chomp
+puts "Perfect #{pl_2} you have been assigned letter 'X'"
+
+team = Players.new([pl_1,'X'], [pl_2,'O'])
+
+play_ground = Board.new
+
+old_board  = play_ground.old_view
+
+while play_ground.all_moves < 10 
+    puts "Okey #{play_ground.all_moves.even? ? team.first_player : team.second_player  } please pick a number"
+    play = gets.chomp
+
+    if play_ground.all_moves.even? 
+        sign = team.second_player_sign
+        list_to_update = team.step_array_p1 
+    else 
+        sign = team.first_player_sign 
+        list_to_update = team.step_array_p2
+    end 
+
+    if play_ground.valid_move(play.to_i)
+        updated_board = play_ground.progress(play, sign)
+        team.player_steps(list_to_update, play)
+        display(updated_board)
+    else
+       if play.to_i == 0 
+        puts "Only numbers are allowed (1-9), look at the board and select available spaces"
+       elsif play.to_i > 0 
+        puts "Number #{play} appears to be taken, please take an available number"
+       end
+        display(old_board)
+    end
+    puts "#{team.first_player}'s moves: #{team.step_array_p1}  and  #{team.second_player}'s moves:  #{team.step_array_p2} | Total plays #{play_ground.all_moves} Status #{team.winner}"
     
+ 
+  if team.game_status
+    
+    puts ""
+    puts "HEY #{team.winner.upcase} has won the game!"
+    puts ""
+    puts "***            ***"
+    puts "*** GAME OVEER ***"
+    puts "***            ***"
+    puts ""
+    puts ""
+    exit
+  elsif !team.game_status && play_ground.all_moves == 9 
+    puts "MY GOODNESS! this is a draw game #{play_ground.all_moves}" 
+    exit
+  end   
+   
+  puts team.game_status
 end
 
 
-
-player_turns
-declay_status
+ 
+ 
 
 
 
