@@ -90,5 +90,4 @@ end
  
  
 
-
-
+# rubocop:enable Style/GlobalVars
