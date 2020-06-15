@@ -11,14 +11,8 @@ class Players
      @one = one
      @two = two
     end
-    
 
     public 
-
-    def show_team
-     puts "Player 1: #{@one[0]} and letter assigned: #{@one[1]}"
-     puts "Player 2: #{@two[0]} and letter assigned: #{@two[1]}"
-    end 
 
     def first_player
      @one[0]  

@@ -1,12 +1,13 @@
 #!/usr/bin/env ruby
-require_relative 'players.rb'
-require_relative 'board.rb'
+require_relative '../lib/players.rb'
+require_relative '../lib/board.rb'
 
- $a = 0; $b = 0
+  
 
 def display(board_view)
 
     y = 0
+    puts "----------------"
     while y < board_view.length
         if y == 2  || y == 5
             puts "  #{board_view[y]}  "
@@ -14,13 +15,14 @@ def display(board_view)
         elsif y == 4 || y == 1  || y == 7
             print " | #{board_view[y]} | "    
         elsif y == 8
-            print "  #{board_view[y]}  \n \n"
+            print "  #{board_view[y]}  \n"
         else        
             print "  #{board_view[y]}  "
         end
 
     y += 1   
     end
+    puts "----------------"
 end 
 
 puts 'Welcome to TIC TAC TOE'
@@ -52,7 +54,7 @@ while play_ground.all_moves < 10
         list_to_update = team.step_array_p2
     end 
 
-    if play_ground.valid_move(play.to_i)
+    if play_ground.valid_move?(play.to_i)
         updated_board = play_ground.progress(play, sign)
         team.player_steps(list_to_update, play)
         display(updated_board)
