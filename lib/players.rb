@@ -1,6 +1,6 @@
 class Players
-  attr_accessor :one, :two, :step, :tt_m
-
+  attr_reader :one, :two, :step, :tt_m
+  attr_reader :winner
   def initialize(one, two)
     @one = one
     @two = two
@@ -42,21 +42,14 @@ class Players
     x = 0
     while x < win_possibilities.length
       currently_checking = win_possibilities[x]
-      a, b = 0
-
-      3.times do |i|
-        a += 1 if step_array_p1.any?(currently_checking[i])
-      end
-
+      a = b = 0
+      3.times { |i| a += 1 if step_array_p1.any?(currently_checking[i]) }
       if a > 2
         @winner = first_player
         return true
       end
 
-      3.times do |j|
-        b += 1 if step_array_p2.any?(currently_checking[j])
-      end
-
+      3.times { |j| b += 1 if step_array_p2.any?(currently_checking[j]) }
       if b > 2
         @winner = second_player
         return true
@@ -65,7 +58,7 @@ class Players
     end
   end
 
-  def winner
-    @winner
+  class << self
+    attr_reader :winner
   end
 end

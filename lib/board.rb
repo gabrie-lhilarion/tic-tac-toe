@@ -1,4 +1,4 @@
-# rubocop: disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop: disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Style/MultipleComparison
 class Board
   attr_accessor :player, :sign, :position
 
@@ -46,4 +46,4 @@ class Board
   end
 end
 
-# rubocop: enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop: enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Style/MultipleComparison
