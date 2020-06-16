@@ -19,8 +19,6 @@ play_ground = Board.new
 
 old_board = play_ground.old_view
 
-
-
 while play_ground.all_moves < 10
   puts "Okey #{play_ground.all_moves.even? ? team.first_player : team.second_player} please pick a number"
   play = gets.chomp
@@ -46,7 +44,6 @@ while play_ground.all_moves < 10
     play_ground.display(old_board)
   end
   puts "#{team.first_player}'s moves:#{team.step_array_p1} and #{team.second_player}'s moves: #{team.step_array_p2}"
-   
 
   if team.game_status
 

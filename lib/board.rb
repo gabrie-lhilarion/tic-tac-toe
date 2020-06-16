@@ -1,36 +1,32 @@
+# rubocop: disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 class Board
   attr_accessor :player, :sign, :position
 
   def initialize
-    @board_data = ['.', '.', '.', '.', '.', '.', '.', '.', '.',]
+    @board_data = ['.', '.', '.', '.', '.', '.', '.', '.', '.']
     @taken = []
     @total_plays = 0
     @status = 0
-  end  
+  end
 
   def display(board_data)
     y = 0
-    puts "----------------"
     while y < board_data.length
       if y == 2 || y == 5
         puts "  #{board_data[y]}  "
-        puts "----------------"
+        puts '----------------'
       elsif y == 4 || y == 1 || y == 7
         print " | #{board_data[y]} | "
-      elsif y == 8
-        print "  #{board_data[y]}  \n"
       else
         print "  #{board_data[y]}  "
       end
-
       y += 1
     end
-    puts "----------------"
+    puts "\n \n"
   end
 
   def valid_move?(num)
-    valid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    num.is_a?(Numeric) && @taken.none?(num) && num > 0 && num < 10 ? true : false
+    num.is_a?(Numeric) && @taken.none?(num) && num.positive? && num < 10 ? true : false
   end
 
   def progress(position, sign)
@@ -49,3 +45,5 @@ class Board
     @total_plays
   end
 end
+
+# rubocop: enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
