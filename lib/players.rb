@@ -3,13 +3,14 @@
 class Players
     attr_accessor :one, :two, :step, :tt_m
     
-    @@p_one = []
-    @@p_two = []
-    @@winner = nil
+    
 
     def initialize(one,two)
      @one = one
      @two = two
+     @p_one = []
+     @p_two = []
+     @winner = nil
     end
 
     public 
@@ -32,11 +33,11 @@ class Players
     
      
     def step_array_p1
-      @@p_one
+      @p_one
     end
     
     def step_array_p2
-      @@p_two  
+      @p_two  
     end
 
     
@@ -64,16 +65,16 @@ class Players
     x = 0
     while x < win_possibilities.length
      currently_checking =  win_possibilities[x]
-     
-     a = 0  b = 0 # for the first & second players
+     a = 0 
+     b = 0 # for the first & second players
 
      3.times do |i|
       #[1, 2, 3],
        a += 1 if step_array_p1.any?(currently_checking[i])
      end  # end of 3 times do
-     
+
      if a > 2
-       @@winner = first_player 
+       @winner = first_player 
        return true
      end  # end of up to 3 for first player
 
@@ -82,7 +83,7 @@ class Players
      end  # end of 3 times do
      
      if b > 2
-       @@winner = second_player 
+       @winner = second_player 
        return true
      end  # end of up to 3 for second player
 
@@ -94,7 +95,7 @@ class Players
 
     
     def winner
-      @@winner
+      @winner
     end
 
 end   
