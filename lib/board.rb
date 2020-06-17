@@ -11,18 +11,19 @@ class Board
 
   def display(board_data)
     y = 0
+    my_string = "\n"
     while y < board_data.length
       if y == 2 || y == 5
-        puts "  #{board_data[y]}  "
-        puts '----------------'
+        my_string << "  #{board_data[y]}  \n------------------\n"
+          
       elsif y == 4 || y == 1 || y == 7
-        print " | #{board_data[y]} | "
+        my_string << "| #{board_data[y]} | "
       else
-        print "  #{board_data[y]}  "
+        my_string << "  #{board_data[y]}   "
       end
       y += 1
     end
-    puts "\n \n"
+    my_string << "\n\n"
   end
 
   def valid_move?(num)

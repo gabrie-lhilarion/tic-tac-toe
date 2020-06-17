@@ -34,14 +34,14 @@ while play_ground.all_moves < 10
   if play_ground.valid_move?(play.to_i)
     updated_board = play_ground.progress(play, sign)
     team.player_steps(list_to_update, play)
-    play_ground.display(updated_board)
+    puts play_ground.display(updated_board)
   else
     if play.to_i.zero?
       puts 'Only numbers are allowed (1-9), look at the board and select available spaces'
     elsif play.to_i.positive?
       puts "Number #{play} appears to be taken, please take an available number"
     end
-    play_ground.display(old_board)
+   puts  play_ground.display(old_board)
   end
   puts "#{team.first_player}'s moves:#{team.step_array_p1} and #{team.second_player}'s moves: #{team.step_array_p2}"
 
