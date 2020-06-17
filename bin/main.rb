@@ -5,23 +5,31 @@ require_relative '../lib/board.rb'
 puts 'Welcome to TIC TAC TOE'
 
 pl1 = ''
+pl2 = ''
 
 loop do
   puts 'Firts player please enter your name'
-  pl = gets.chomp
-  if !pl.gsub(/ /, '').length.zero?
-    puts "Okey #{pl1} you have been assigned letter 'O'"
-    pl1 += pl
+  player1 = gets.chomp
+  if !player1.gsub(/ /, '').length.zero?
+    puts "Okey #{player1} you have been assigned letter 'O'"
+    pl1 += player1
     break
   else
     puts 'Invalid player name! '
   end
 end
 
-puts 'Second player please enter your name'
-
-pl2 = gets.chomp
-puts "Perfect #{pl2} you have been assigned letter 'X'"
+loop do
+  puts 'Second player please enter your name'
+  player2 = gets.chomp
+  if !player2.gsub(/ /, '').length.zero?
+    puts "Okey #{player2} you have been assigned letter 'X'"
+    pl2 += player2
+    break
+  else
+    puts 'Invalid player name! '
+  end
+end
 
 team = Players.new([pl1, 'X'], [pl2, 'O'])
 
