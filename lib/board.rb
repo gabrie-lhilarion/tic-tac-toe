@@ -1,4 +1,3 @@
-# rubocop: disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Style/MultipleComparison
 class Board
   attr_accessor :player, :sign, :position
 
@@ -13,10 +12,9 @@ class Board
     y = 0
     my_string = "\n"
     while y < board_data.length
-      if y == 2 || y == 5
+      if [2, 5].any?(y)
         my_string << "  #{board_data[y]}  \n------------------\n"
-          
-      elsif y == 4 || y == 1 || y == 7
+      elsif [1, 4, 7].any?(y)
         my_string << "| #{board_data[y]} | "
       else
         my_string << "  #{board_data[y]}   "
@@ -46,5 +44,3 @@ class Board
     @total_plays
   end
 end
-
-# rubocop: enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Style/MultipleComparison

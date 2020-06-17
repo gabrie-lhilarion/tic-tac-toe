@@ -41,7 +41,7 @@ while play_ground.all_moves < 10
     elsif play.to_i.positive?
       puts "Number #{play} appears to be taken, please take an available number"
     end
-   puts  play_ground.display(old_board)
+    puts play_ground.display(old_board)
   end
   puts "#{team.first_player}'s moves:#{team.step_array_p1} and #{team.second_player}'s moves: #{team.step_array_p2}"
 
