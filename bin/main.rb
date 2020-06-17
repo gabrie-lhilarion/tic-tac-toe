@@ -4,10 +4,20 @@ require_relative '../lib/board.rb'
 
 puts 'Welcome to TIC TAC TOE'
 
-puts 'Firts player please enter your name'
-pl1 = gets.chomp
+pl1 = ''
 
-puts "Okey #{pl1} you have been assigned letter 'O'"
+loop do
+  puts 'Firts player please enter your name'
+  pl = gets.chomp
+  if !pl.gsub(/ /, '').length.zero?
+    puts "Okey #{pl1} you have been assigned letter 'O'"
+    pl1 += pl
+    break
+  else
+    puts 'Invalid player name! '
+  end
+end
+
 puts 'Second player please enter your name'
 
 pl2 = gets.chomp
