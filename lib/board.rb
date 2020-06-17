@@ -12,16 +12,16 @@ class Board
     y = 0
     my_string = "\n"
     while y < board_data.length
-      if [2, 5].any?(y)
-        my_string << "  #{board_data[y]}  \n------------------\n"
-      elsif [1, 4, 7].any?(y)
-        my_string << "| #{board_data[y]} | "
-      else
-        my_string << "  #{board_data[y]}   "
-      end
+      my_string += if [2, 5].any?(y)
+                     "  #{board_data[y]}  \n------------------\n"
+                   elsif [1, 4, 7].any?(y)
+                     "| #{board_data[y]} | "
+                   else
+                     "  #{board_data[y]}   "
+                   end
       y += 1
     end
-    my_string << "\n\n"
+    my_string
   end
 
   def valid_move?(num)
