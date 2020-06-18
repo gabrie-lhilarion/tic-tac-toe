@@ -21,6 +21,7 @@ class Board
                    end
       y += 1
     end
+    my_string += "\n\n"
     my_string
   end
 
