@@ -1,113 +1,83 @@
 #!/usr/bin/env ruby
-# rubocop:disable Style/GlobalVars
+require_relative '../lib/players.rb'
+require_relative '../lib/board.rb'
 
-$boxes = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-$taken = []
-$array_two = []
-$array_one = []
-$second_player = nil
-$first_player = nil
-$winner = nil
+puts 'Welcome to TIC TAC TOE'
 
-def available?(number, step)
-  if $taken.any?(number.to_i)
-    puts 'Soryy the position has been taken'
+pl1 = ''
+pl2 = ''
+
+loop do
+  puts 'Firts player please enter your name'
+  player1 = gets.chomp
+  if !player1.gsub(/ /, '').length.zero?
+    puts "Okey #{player1} you have been assigned letter 'O'"
+    pl1 += player1
+    break
   else
-    $taken << number.to_i
-
-    step.even? ? $array_two << number.to_i : $array_one << number.to_i
-
-    puts "#{$taken} taken and #{$boxes - $taken == [] ? 0 : $boxes - $taken} available.  #{$array_one} : #{$array_two}"
+    puts 'Invalid player name! '
   end
 end
 
-def win(player1, player2)
-  win_possibilities = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9],
-    [1, 5, 9],
-    [3, 5, 7]
-  ]
-
-  if win_possibilities.any?(player1)
-    $winner = $second_player
-    true
-  elsif win_possibilities.any?(player2)
-    $winner = $first_player
-    true
+loop do
+  puts 'Second player please enter your name'
+  player2 = gets.chomp
+  if !player2.gsub(/ /, '').length.zero?
+    puts "Okey #{player2} you have been assigned letter 'X'"
+    pl2 += player2
+    break
   else
-    false
+    puts 'Invalid player name! '
   end
 end
 
-def declay_status
-  if $winner.nil?
-    puts 'This is a draw game'
+team = Players.new([pl1, 'X'], [pl2, 'O'])
+
+play_ground = Board.new
+
+old_board = play_ground.old_view
+
+while play_ground.all_moves < 10
+  puts "Okey #{play_ground.all_moves.even? ? team.first_player : team.second_player} please pick a number"
+  play = gets.chomp
+
+  if play_ground.all_moves.even?
+    sign = team.second_player_sign
+    list_to_update = team.step_array_p1
   else
-    puts 'G A M E  O V E R'
-    puts "The winner is #{$winner}"
-  end
-end
-
-def player_turns # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
-  puts 'Enter  your name: '
-
-  player_one = gets.chomp.sub(' ', '')
-
-  if !player_one.empty? && player_one.length > 2
-    $first_player = player_one
-    puts "Hello #{player_one}, welcom and please wait for the other player"
-    puts 'Next player, enter your name'
-  else
-    puts 'WRONG MOVE!'
-    puts 'Start over and enter an name upto 3 characters'
-    exit
+    sign = team.first_player_sign
+    list_to_update = team.step_array_p2
   end
 
-  player_two = gets.chomp.sub(' ', '')
-  if !player_two.empty? && player_two.length > 2
-    $second_player = player_two
-    puts "PERFECT! #{player_one} and #{player_two} you can start the game"
+  if play_ground.valid_move?(play.to_i)
+    updated_board = play_ground.progress(play, sign)
+    team.player_steps(list_to_update, play)
+    puts play_ground.display(updated_board)
   else
-    puts 'WRONG MOVE!'
-    puts 'Start over and enter an name upto 3 characters'
-    exit
-  end
-
-  board = "
-     |     |
-_____|_____|_____
-     |     |
-_____|_____|_____
-     |     |
-     |     | "
-
-  x = 0
-  while x < $boxes.length
-    x += 1
-    if $taken.length.even?
-      puts "#{player_two} make your move"
-      print board # rubocop:disable Style/IdenticalConditionalBranches
-    else
-      puts "#{player_one} make your move"
-      print board # rubocop:disable Style/IdenticalConditionalBranches
-    end
-
-    play = gets.chomp
     if play.to_i.zero?
-      puts 'Please choose a number from 1 to 9'
-    else
-      available?(play, x)
-      break if win($array_one, $array_two)
+      puts 'Only numbers are allowed (1-9), look at the board and select available spaces'
+    elsif play.to_i.positive?
+      puts "Number #{play} appears to be taken, please take an available number"
     end
+    puts play_ground.display(old_board)
   end
+  puts "#{team.first_player}'s moves:#{team.step_array_p1} and #{team.second_player}'s moves: #{team.step_array_p2}"
+
+  if team.game_status
+
+    puts ''
+    puts "HEY #{team.winner.upcase} has won the game!"
+    puts ''
+    puts '***            ***'
+    puts '*** GAME OVEER ***'
+    puts '***            ***'
+    puts ''
+    puts ''
+    exit
+  elsif !team.game_status && play_ground.all_moves == 9
+    puts "MY GOODNESS! this is a draw game #{play_ground.all_moves}"
+    exit
+  end
+
+  puts team.game_status
 end
-
-player_turns
-declay_status
-
-# rubocop:enable Style/GlobalVars
