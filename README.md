@@ -1,8 +1,11 @@
-## WELCOME TO TIC TAC TOE
- * Tic-tac-toe (American English), noughts and crosses (British English), or Xs and Os is a paper-and-pencil game for two    players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
+## TIC TAC TOE
+* This is a practical project to create a tic tac toe game using ruby and the object oriented concept.
+
+## TIC TAC TOE GAME DESCRIPTION
+ * Tic-tac-toe is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
 
 
-# STARTING THE GAME.
+## STARTING THE GAME.
 * On you computer get to directory you want to keep the files
     run => git clone https://github.com/gabrie-lhilarion/tic-tac-toe.git 
     run => cd tic-tac-toe 
@@ -15,21 +18,23 @@
 
 # Built With
 * Ruby
+* Rubocop
 * Visual Studio Code
 
 # Live Demo
 **[Live Demo](https://repl.it/@gabrielhilarion/LawngreenNeatRecords#main.rb)**
 
- 
 
 # Authors
 
-
-**Gabriel Hilarion**
+👨 **Gabriel Hilarion**
 
 * Github: **[@gabrie-lhilarion](https://github.com/gabrie-lhilarion)**
 * Twitter: **[@gabrie-lhilarion](https://twitter.com/gabrielDeman)**
 
+👨 **Oloo Moses**
+- Twitter: https://twitter.com/olooine
+- Github: https://github.com/oloomoses
 
 #  Contributing
 
