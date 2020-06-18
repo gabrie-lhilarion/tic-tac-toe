@@ -14,7 +14,7 @@
    * To play the game two players need to provide their names, then the computer would assign each person a leter either X or O.
     Each player will choose from the spaces in the board which are actually numbers and which will be replaced by the letter assign to the player. The player who is able to place three continues letter either vertically, horizontally or diagonally wins the game, or the game is a draw.
 
-![Algorithm schema](screenshot.png)
+![Algorithm schema](./screenshot.png)
 
 # Built With
 * Ruby
