@@ -22,7 +22,7 @@
 * Visual Studio Code
 
 # Live Demo
-**[Live Demo](https://repl.it/@gabrielhilarion/LawngreenNeatRecords#main.rb)**
+**[Live Demo](https://repl.it/@gabrielhilarion/tic-tac-toe)**
 
 
 # Authors
