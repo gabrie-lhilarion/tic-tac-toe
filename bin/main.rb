@@ -43,10 +43,10 @@ while play_ground.all_moves < 10
 
   if play_ground.all_moves.even?
     sign = team.second_player_sign
-    list_to_update = team.step_array_p1
+    list_to_update = team.instance_variable_get(:@p_one)
   else
     sign = team.first_player_sign
-    list_to_update = team.step_array_p2
+    list_to_update = team.instance_variable_get(:@p_two)
   end
 
   if play_ground.valid_move?(play.to_i)
@@ -61,7 +61,7 @@ while play_ground.all_moves < 10
     end
     puts play_ground.display(old_board)
   end
-  puts "#{team.first_player}'s moves:#{team.step_array_p1} and #{team.second_player}'s moves: #{team.step_array_p2}"
+  puts "#{team.first_player}'s moves:#{team.instance_variable_get(:@p_one)} and #{team.second_player}'s moves: #{team.instance_variable_get(:@p_two)}"
 
   if team.game_status
 

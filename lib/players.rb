@@ -25,14 +25,6 @@ class Players
     @two[1]
   end
 
-  def step_array_p1
-    @p_one
-  end
-
-  def step_array_p2
-    @p_two
-  end
-
   def player_steps(step_array, step)
     step_array << step.to_i
   end
@@ -43,22 +35,18 @@ class Players
     while x < win_possibilities.length
       currently_checking = win_possibilities[x]
       a = b = 0
-      3.times { |i| a += 1 if step_array_p1.any?(currently_checking[i]) }
+      3.times { |i| a += 1 if @p_one.any?(currently_checking[i]) }
       if a > 2
         @winner = first_player
         return true
       end
 
-      3.times { |j| b += 1 if step_array_p2.any?(currently_checking[j]) }
+      3.times { |j| b += 1 if @p_two.any?(currently_checking[j]) }
       if b > 2
         @winner = second_player
         return true
       end
       x += 1
     end
-  end
-
-  class << self
-    attr_reader :winner
   end
 end
