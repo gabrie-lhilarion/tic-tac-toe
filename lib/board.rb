@@ -14,11 +14,11 @@ class Board
     my_string = "\n"
     while y < board_data.length
       my_string += if [2, 5].any?(y)
-                     "  #{board_data[y]}  \n------------------\n"
+                     " #{board_data[y]} \n------------\n"
                    elsif [1, 4, 7].any?(y)
-                     "| #{board_data[y]} | "
+                     "| #{board_data[y]} |"
                    else
-                     "  #{board_data[y]}   "
+                     " #{board_data[y]} "
                    end
       y += 1
     end

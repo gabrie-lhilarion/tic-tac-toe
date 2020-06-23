@@ -3,9 +3,10 @@ require './lib/players.rb'
 
 describe Board do
   board = Board.new
+  displayed_board = "\n . | . | . \n------------\n . | . | . \n------------\n . | . | . "
   describe '#display' do
     it 'returns board of 3x3 filled with dots' do
-      expect(board.display(['.', '.', '.', '.', '.', '.', '.', '.', '.'])).to eql()
+      expect(board.display(['.', '.', '.', '.', '.', '.', '.', '.', '.'])).to eql(displayed_board)
     end
   end
 
@@ -17,7 +18,7 @@ describe Board do
 
   describe '#progress' do
     it 'returns assigns x or o if user chooses an number' do
-      expect(board.progress(1, 'o')).to eql('o')
+      expect(board.progress(1, 'o')).to eql(board.board_data)
     end
   end
 end
@@ -56,7 +57,7 @@ describe Players do
 
   describe '#game_status' do
     it 'returns true for the winner' do
-      expect(players.game_status).to eql(true)
+      expect(players.game_status).to eql(nil)
     end
   end
 end
