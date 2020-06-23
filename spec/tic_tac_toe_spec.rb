@@ -4,7 +4,7 @@ require './lib/players.rb'
 describe Board do
   board = Board.new
   describe '#display' do
-    it 'returns board of 3x3 filled with dots' do     
+    it 'returns board of 3x3 filled with dots' do
       expect(board.display(['.', '.', '.', '.', '.', '.', '.', '.', '.'])).to eql()
     end
   end
