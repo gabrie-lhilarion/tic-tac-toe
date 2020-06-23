@@ -2,8 +2,8 @@ require './lib/board.rb'
 require './lib/players.rb'
 
 describe Board do
-  board = Board.new
-  displayed_board = "\n . | . | . \n------------\n . | . | . \n------------\n . | . | . "
+  let(:board) { Board.new }
+  let(:displayed_board) { "\n . | . | . \n------------\n . | . | . \n------------\n . | . | . " }
   describe '#display' do
     it 'returns board of 3x3 filled with dots' do
       expect(board.display(['.', '.', '.', '.', '.', '.', '.', '.', '.'])).to eql(displayed_board)
@@ -24,7 +24,7 @@ describe Board do
 end
 
 describe Players do
-  players = Players.new(['player1_name', 'symbol1'], ['player2_name', 'symbol2'])
+  let(:players) { Players.new(%w[player1_name symbol1], %w[player2_name symbol2]) }
   describe '#first_player' do
     it 'returns the player1_name' do
       expect(players.first_player).to eql('player1_name')
@@ -56,7 +56,7 @@ describe Players do
   end
 
   describe '#game_status' do
-    it 'returns true for the winner' do
+    it 'returns nil while winner is not true' do
       expect(players.game_status).to eql(nil)
     end
   end

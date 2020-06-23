@@ -61,7 +61,6 @@ while play_ground.total_plays < 10
     end
     puts play_ground.display(old_board)
   end
-  puts "#{team.first_player}'s moves:#{team.instance_variable_get(:@p_one)} and #{team.second_player}'s moves: #{team.instance_variable_get(:@p_two)}"
 
   if team.game_status
 
