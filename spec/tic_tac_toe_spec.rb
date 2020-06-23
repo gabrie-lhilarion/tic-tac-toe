@@ -50,7 +50,7 @@ describe Players do
 
   describe '#player_steps' do
     it 'appends count to the new array' do
-      expect(players.player_steps(array, steps)).to eql(array)
+      expect(players.player_steps([], 7)).to eql([7])
     end
   end
 
