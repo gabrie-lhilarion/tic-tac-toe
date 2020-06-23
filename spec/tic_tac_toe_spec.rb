@@ -20,18 +20,6 @@ describe Board do
       expect(board.progress(1, 'o')).to eql('o')
     end
   end
-
-  describe '#old_view' do
-    it 'returns the previous board' do
-      expect(board.old_view).to eql()
-    end
-  end
-
-  describe '#all_moves' do
-    it 'returns total count of moves' do
-      expect(board.all_moves).to eql()
-    end
-  end
 end
 
 describe Players do
