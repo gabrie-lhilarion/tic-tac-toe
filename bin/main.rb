@@ -35,18 +35,18 @@ team = Players.new([pl1, 'X'], [pl2, 'O'])
 
 play_ground = Board.new
 
-old_board = play_ground.old_view
+old_board = play_ground.board_data
 
-while play_ground.all_moves < 10
-  puts "Okey #{play_ground.all_moves.even? ? team.first_player : team.second_player} please pick a number"
+while play_ground.total_plays < 10
+  puts "Okey #{play_ground.total_plays.even? ? team.first_player : team.second_player} please pick a number"
   play = gets.chomp
 
-  if play_ground.all_moves.even?
+  if play_ground.total_plays.even?
     sign = team.second_player_sign
-    list_to_update = team.step_array_p1
+    list_to_update = team.instance_variable_get(:@p_one)
   else
     sign = team.first_player_sign
-    list_to_update = team.step_array_p2
+    list_to_update = team.instance_variable_get(:@p_two)
   end
 
   if play_ground.valid_move?(play.to_i)
@@ -61,7 +61,6 @@ while play_ground.all_moves < 10
     end
     puts play_ground.display(old_board)
   end
-  puts "#{team.first_player}'s moves:#{team.step_array_p1} and #{team.second_player}'s moves: #{team.step_array_p2}"
 
   if team.game_status
 
@@ -74,8 +73,8 @@ while play_ground.all_moves < 10
     puts ''
     puts ''
     exit
-  elsif !team.game_status && play_ground.all_moves == 9
-    puts "MY GOODNESS! this is a draw game #{play_ground.all_moves}"
+  elsif !team.game_status && play_ground.total_plays == 9
+    puts "MY GOODNESS! this is a draw game #{play_ground.total_plays}"
     exit
   end
 

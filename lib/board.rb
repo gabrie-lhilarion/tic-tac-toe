@@ -1,5 +1,6 @@
 class Board
   attr_accessor :player, :sign, :position
+  attr_reader :total_plays, :board_data
 
   def initialize
     @board_data = ['.', '.', '.', '.', '.', '.', '.', '.', '.']
@@ -13,11 +14,11 @@ class Board
     my_string = "\n"
     while y < board_data.length
       my_string += if [2, 5].any?(y)
-                     "  #{board_data[y]}  \n------------------\n"
+                     " #{board_data[y]} \n------------\n"
                    elsif [1, 4, 7].any?(y)
-                     "| #{board_data[y]} | "
+                     "| #{board_data[y]} |"
                    else
-                     "  #{board_data[y]}   "
+                     " #{board_data[y]} "
                    end
       y += 1
     end
@@ -34,13 +35,5 @@ class Board
     @board_data[(position.to_i - 1)] = sign
     @taken << position.to_i
     @board_data
-  end
-
-  def old_view
-    @board_data
-  end
-
-  def all_moves
-    @total_plays
   end
 end
